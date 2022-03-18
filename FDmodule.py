@@ -31,13 +31,18 @@ def main():
     cam = cv2.VideoCapture(0)
     pTime = 0
     detector = FaceDetector(0.75)
+
+    print("\n [INFO] Stand in the camera's view")
+    numImgs = 0
     while True:
         ret, frame = cam.read() #read each frame, return true if a frame exists
         frame, bounds = detector.findFaces(frame)
-
         cv2.imshow("Running", frame)
-        cv2.waitKey(1)
+        k = cv2.waitKey(1)
+        if k % 256 == 27:
+            break
 
+        
 if __name__ == "__main__":
     main()
 
