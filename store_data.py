@@ -53,9 +53,9 @@ def StoreData(cam, faceNum, imgsInDir):
         if(len(bounds) != 0):
             x1,y1 = bounds[0][0], bounds[0][1]
             x2, y2 = x1 + bounds[0][2], y1 + bounds[0][3]
-            if imgsInDir % 20 == 0:
-                cv2.imwrite(f"./Data/face{faceNum}/face{faceNum}.{int(imgsInDir/20)}.jpg", frame)
-                cv2.imwrite(f"./Dataset/face{faceNum}.{int(imgsInDir/20)}.jpg", frame[y1:y2, x1:x2])
+            if imgsInDir % 5 == 0:
+                cv2.imwrite(f"./Data/face{faceNum}/face{faceNum}.{int(imgsInDir/5)}.jpg", frame)
+                cv2.imwrite(f"./Dataset/face{faceNum}.{int(imgsInDir/5)}.jpg", frame[y1:y2, x1:x2])
         else:
             pass
         cv2.imshow("Running", frame)
@@ -65,7 +65,7 @@ def StoreData(cam, faceNum, imgsInDir):
 
         if k % 256 == 27:
             break
-        elif imgsInDir >= 300: 
+        elif imgsInDir >= 500: 
             break
 
 facesList, faceNum = Face('DS.pickle')

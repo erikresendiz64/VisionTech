@@ -7,8 +7,8 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-id = 0
-names = ["Erik", "Georgi", "Anas", "Ricardo"]
+id = 0 
+names = ["Erik", "Luis", "Maricela", "Erik"]
 
 cam = cv2.VideoCapture(0)
 FD = FD.FaceDetector(0.75)

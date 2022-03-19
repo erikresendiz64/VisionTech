@@ -26,7 +26,9 @@ def getImagesLabels(path):
             PIL_img = Image.open(imagePath).convert('L') # grayscale
             img_numpy = np.array(PIL_img,'uint8')
             face = FindNumInString(info)
+            print(f"Class: face{face} with {info}")
             faceSamples.append(img_numpy) #CHECK THIS
+            print(f'Trained: face{face}')
             ids.append(face)
         else:
             pass
