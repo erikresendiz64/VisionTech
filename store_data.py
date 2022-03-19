@@ -48,10 +48,18 @@ def StoreData(cam, faceNum, imgsInDir):
     while True:
         ret, frame = cam.read() #read each frame, return true if a frame exists
         frame, bounds = FD.findFaces(frame)
+
         imgsInDir += 1
-        if imgsInDir % 50 == 0:
-            cv2.imwrite(f"./Data/face{faceNum}/face{faceNum}({int(imgsInDir/50)}).jpg", frame)
+        if(len(bounds) != 0):
+            x1,y1 = bounds[0][0], bounds[0][1]
+            x2, y2 = x1 + bounds[0][2], y1 + bounds[0][3]
+            if imgsInDir % 20 == 0:
+                cv2.imwrite(f"./Data/face{faceNum}/face{faceNum}.{int(imgsInDir/20)}.jpg", frame)
+                cv2.imwrite(f"./Dataset/face{faceNum}.{int(imgsInDir/20)}.jpg", frame[y1:y2, x1:x2])
+        else:
+            pass
         cv2.imshow("Running", frame)
+        
 
         k = cv2.waitKey(1)
 
@@ -63,7 +71,6 @@ def StoreData(cam, faceNum, imgsInDir):
 facesList, faceNum = Face('DS.pickle')
 FD = FDmodule.FaceDetector(0.75)
 cam = cv2.VideoCapture(0)
-pTime = 0
 imgsInDir = Directory()
 
 print("\n[INFO] Stand in the camera's view")

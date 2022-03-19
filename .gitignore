@@ -3,3 +3,5 @@
 /__pycache__
 /encodings.pickle
 /DS.pickle
+/trainer
+/Dataset

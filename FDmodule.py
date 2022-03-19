@@ -29,7 +29,6 @@ class FaceDetector():
 
 def main():
     cam = cv2.VideoCapture(0)
-    pTime = 0
     detector = FaceDetector(0.75)
 
     print("\n [INFO] Stand in the camera's view")
