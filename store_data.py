@@ -65,7 +65,7 @@ def StoreData(cam, faceNum, imgsInDir):
 
         if k % 256 == 27:
             break
-        elif imgsInDir >= 100: 
+        elif imgsInDir >= 300: 
             break
 
 facesList, faceNum = Face('DS.pickle')
