@@ -15,7 +15,7 @@ def FindNumInString(str):
     return num
 
 def Face(file):
-    with open('DS.pickle', 'rb') as f:
+    with open('Pickle.pickle', 'rb') as f:
         try:
             facesList = pickle.load(f)
             lastFace = facesList[len(facesList) - 1]
@@ -41,7 +41,7 @@ def Directory():
             parsed = latest_file.split('/')
             numLoc = parsed[3]
             numInStr = FindNumInString(numLoc)
-            numImgs = numInStr * 50 #to avoid overwriting previous images ^^^
+            numImgs = numInStr #to avoid overwriting previous images ^^^
     return numImgs
 
 def StoreData(cam, faceNum, imgsInDir):
@@ -65,11 +65,11 @@ def StoreData(cam, faceNum, imgsInDir):
 
         if k % 256 == 27:
             break
-        elif imgsInDir >= 500: 
+        elif imgsInDir >= 25: 
             break
 
-facesList, faceNum = Face('DS.pickle')
-FD = FDmodule.FaceDetector(0.75)
+facesList, faceNum = Face('Pickle.pickle')
+FD = FDmodule.FaceDetector()
 cam = cv2.VideoCapture(0)
 imgsInDir = Directory()
 
@@ -78,5 +78,5 @@ StoreData(cam, faceNum, imgsInDir)
 
 faceToAdd = f'face{faceNum}' #update Pickle File
 facesList.append(faceToAdd)
-with open('DS.pickle', 'wb') as f:
+with open('Pickle.pickle', 'wb') as f:
     pickle.dump(facesList, f)

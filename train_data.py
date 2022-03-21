@@ -3,6 +3,7 @@ import os
 import numpy as np
 from PIL import Image
 import re
+import time
 
 def FindNumInString(str):
     findNum = re.findall('[0-9]+', str)
@@ -21,14 +22,14 @@ def getImagesLabels(path):
 
     for imagePath in imagePaths:
         paths = imagePath.split("/")
+        print(paths)
+        print(imagePath)
         info = paths[1]
         if not info.startswith('.'):
             PIL_img = Image.open(imagePath).convert('L') # grayscale
             img_numpy = np.array(PIL_img,'uint8')
             face = FindNumInString(info)
-            print(f"Class: face{face} with {info}")
             faceSamples.append(img_numpy) #CHECK THIS
-            print(f'Trained: face{face}')
             ids.append(face)
         else:
             pass
@@ -36,8 +37,12 @@ def getImagesLabels(path):
     return faceSamples,ids
         
 print ("\n [INFO] Training faces. It will take a few seconds. Wait ...")
+start = time.time()
 faces, ids = getImagesLabels(path)
 recognizer.train(faces, np.array(ids))
 
 recognizer.write('trainer/trainer.yml') 
+end = time.time()
+total = end - start
+print(f"Done in {total} seconds")
 print("\n [INFO] {0} face(s) trained. Exiting Program".format(len(np.unique(ids))))

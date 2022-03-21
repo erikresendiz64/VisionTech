@@ -1,7 +1,8 @@
 /Data
-/face_detector.xml
+/detector.xml
 /__pycache__
 /encodings.pickle
 /DS.pickle
 /trainer
 /Dataset
+/Pickle.pickle

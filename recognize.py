@@ -8,10 +8,10 @@ recognizer.read('trainer/trainer.yml')
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 id = 0 
-names = ["Erik", "Luis", "Maricela", "Erik"]
+names = ["Erik", "Erik"]
 
 cam = cv2.VideoCapture(0)
-FD = FD.FaceDetector(0.75)
+FD = FD.FaceDetector()
 print("\n [INFO] Stand in the camera's view")
 
 while True:
@@ -22,6 +22,7 @@ while True:
         x1,y1 = bounds[0][0], bounds[0][1]
         x2, y2 = x1 + bounds[0][2], y1 + bounds[0][3]
         id, confidence = recognizer.predict(gray[y1:y1+y2,x1:x1+x2])
+        print(id)
         id = names[id]
         cv2.putText(
                 frame, 
