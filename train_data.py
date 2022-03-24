@@ -22,11 +22,11 @@ def getImagesLabels(path):
 
     for imagePath in imagePaths:
         paths = imagePath.split("/")
-        print(paths)
-        print(imagePath)
         info = paths[1]
         if not info.startswith('.'):
             PIL_img = Image.open(imagePath).convert('L') # grayscale
+            cv2.imshow("img", PIL_img)
+            cv2.waitKey(0)
             img_numpy = np.array(PIL_img,'uint8')
             face = FindNumInString(info)
             faceSamples.append(img_numpy) #CHECK THIS

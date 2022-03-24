@@ -23,7 +23,6 @@ class FaceDetector():
                 bound = int(boundC.xmin * framew), int(boundC.ymin * frameh), \
                         int(boundC.width * framew), int(boundC.height * frameh) #adjust rectangle bounds, manipulate locations
                 bounds.append(bound)
-                cv2.rectangle(frame, bound, (255, 0, 255), 2) #rectangle (color chosen here)
         
         return frame, bounds
 

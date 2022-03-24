@@ -5,4 +5,7 @@
 /DS.pickle
 /trainer
 /Dataset
-/Pickle.pickle
+/faces.pickle
+/train_data.py
+/train_model.py
+/recognize.py
