@@ -125,6 +125,10 @@ class Store:
 
         return newFace, hasEncodings
 
+    # def AdminCheck(self, name):
+
+
+
 # facesList, faceNum = Face('faces.pickle')
 # FD = FDmodule.FaceDetector()
 # cam = cv2.VideoCapture(0)
