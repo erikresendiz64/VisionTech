@@ -86,44 +86,44 @@ class Store:
         encodings = []
         img_encoded = 0
         # Store image encoding and names
+        idx = 0
         for img_path in images_path:
             img = cv2.imread(img_path)
             rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             paths = img_path.split("/")
             info = paths[1]
-            if not info.startswith('.'):
-                # Get the filename only from the initial file path.
-                basename = os.path.basename(img_path)
-                (filename, ext) = os.path.splitext(basename)
-                idx = FindNumInString(filename)
-                face = face_recognition.face_encodings(rgb_img)
-                # Get encoding
-                if face:
-                    img_encoding = face[0]
-                    img_encoded += 1
-                    encodings.append(img_encoding)
-                    # encodings.append(img_encoding)
-                    # names.append(name)
-                    print("image succesfully encoded")
-                else:
-                    print("encoding unsuccesful")
-            else:
+            if info.startswith('.'):
                 pass
+            # Get the filename only from the initial file path.
+            basename = os.path.basename(img_path)
+            (filename, ext) = os.path.splitext(basename)
+            idx = FindNumInString(filename)
+            face = face_recognition.face_encodings(rgb_img)
+            # Get encoding
+            if face:
+                img_encoding = face[0]
+                img_encoded += 1
+                encodings.append(img_encoding)
+                # encodings.append(img_encoding)
+                # names.append(name)
+                print("image succesfully encoded")
+            else:
+                print("encoding unsuccesful")
         
-        newFace.ID = idx
-        newFace.encodings = encodings
-        if idx == 0:
-            newFace.MakeAdmin()
-        
-        # if img_encoded == 0:
-        #     hasEncodings = False
-        # else:
-        #     hasEncodings = True
+        if img_encoded == 0:
+            hasEncodings = False
+        else:
+            hasEncodings = True
+            newFace.ID = idx
+            newFace.encodings = encodings
+
+            if idx == 0:
+                newFace.MakeAdmin()
 
         print(f'{img_encoded} images encoded')
         print("\nEncoding images loaded")
 
-        return newFace
+        return newFace, hasEncodings
 
 # facesList, faceNum = Face('faces.pickle')
 # FD = FDmodule.FaceDetector()
